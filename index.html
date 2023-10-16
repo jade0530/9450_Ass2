@@ -21,6 +21,7 @@ body {font-family: "Lato", sans-serif}
     <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
     <a href="index.html#venue" class="w3-bar-item w3-button w3-padding-large w3-hide-small">VENUE</a>
+    <a href="index.html#abstract#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CALL FOR ABSTRACTS</a>
     <a href="index.html#program" class="w3-bar-item w3-button w3-padding-large w3-hide-small">PROGRAM</a>
     <a href="index.html#registration" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTRATION</a>
     <a href="index.html#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
@@ -69,6 +70,23 @@ body {font-family: "Lato", sans-serif}
     </div>
 </div>
 
+  <!-- The Call For Abstracts Section -->
+  <div class="w3-container w3-padding-64 w3-center w3-light-grey w3-large">
+    <h2 class="w3-wide w3-center">CALL FOR ABSTRACTS</h2>
+    <h3 class="w3-container">Submission guidelines</h3>
+    <p style="text-align: left; margin:10px 20%">Authors are encouraged to submit extended abstracts (2 pages) of original papers.<br>
+      Areas of interest include but are not limited to: <br>
+      <ul style="text-align: left; margin:10px 25%">
+        <li>coding and classification systems for medical data</li>
+        <li>messaging standards</li>
+      </ul></p>
+    <p style="text-align: left; margin:10px 20%">Papers must be submitted in PDF format and forwarded via email (refer to <i>Contact Us</i> section).<br> 
+      Submissions not meeting the submission guidelines risk rejection without consideration of their merits.</p>
+    <p style="text-align: left; margin:10px 20%">Submission deadline: 5pm 18 October 2023</p>
+    <div class="w3-container w3-center">
+      <button class="w3-button w3-black" onclick="document.getElementById('registrationModal').style.display='block'">Submission Link</button>
+    </div>
+  </div>
 
   <!-- The Program Section -->
   <div class="w3-black" id="program">
@@ -122,7 +140,7 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
 
-  
+  <!-- The Registration Section -->
   <div class="w3-container w3-content w3-padding-64 w3-light-grey" style="max-width:800px">
     <h2 class="w3-wide w3-center">Registrations are now open!</h2>
     <p class="w3-container w3-center">All persons attending the workshop must complete an online registration form.</p>
@@ -142,7 +160,7 @@ body {font-family: "Lato", sans-serif}
       <div class="w3-container">
         <p><label><i class="fa fa-user"></i> Full Name</label></p>
         <input class="w3-input w3-border" type="text" placeholder="Enter name">
-        <p><label><i class="fa fa-send"></i> Email Address</label></p>
+        <p><label><i class="fa fa-envelope"></i> Email Address</label></p>
         <input class="w3-input w3-border" type="text" placeholder="Enter email">
         <p><label><i class="fa fa-group"></i> Affiliation</label></p>
         <input class="w3-input w3-border" type="text" placeholder="Enter affiliation">
@@ -155,29 +173,17 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
 
-  <!-- The Contact Section -->
+  <!-- The Inquires/Contact Section -->
   <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-    <h2 class="w3-wide w3-center">CONTACT</h2>
-    <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
-    <div class="w3-row w3-padding-32">
-      <div class="w3-col m6 w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
-        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+    <h2 class="w3-wide w3-center">CONTACT US</h2>
+    <div class="w3-row">
+      <div class="w3-center w3-large w3-margin-bottom">
+        <p class="w3-opacity w3-center"><i>For all inquires regarding the workshop, please contact us below.</i></p>
+        <i class="w3-center fa fa-map-marker" style="width:30px"></i> 518, Samuels Building, F25, Samuel Terry Ave, Kensington NSW 2052<br>
+        <i class="w3-center fa fa-phone" style="width:30px"></i> Phone: +61 123 456 789<br>
+        <i class="w3-center fa fa-envelope" style="width:30px"> </i> Email: <a href="healthcodex@gmail.com">healthcodex@gmail.com</a><br>
       </div>
       <div class="w3-col m6">
-        <form action="/action_page.php" target="_blank">
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-            </div>
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-            </div>
-          </div>
-          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-        </form>
       </div>
     </div>
   </div>
