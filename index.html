@@ -153,15 +153,15 @@ body {font-family: "Lato", sans-serif}
         <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Registration</h2>
       </header>
 
-      <form id="registrationForm" onsubmit="return validInfo()" method="GET" action="regSuccess.html">
+      <form id="registrationForm" onsubmit="validateAll()" method="GET" action="regSuccess.html">
         <div class="w3-container" id="login-info">
           <h4 class="w3-wide">Login Information</h4>
           <p><label>Email Address</label></p>
-          <input class="w3-input w3-border" id="email" type="text" oninput="validateEmail(this)" placeholder="Enter Email" required>
+          <input class="w3-input w3-border" id="email" type="text" placeholder="Enter Email" required>
           <p><label>Password</label></p>
-          <input class="w3-input w3-border" id="password" type="text" onchange="validatePassword(this)" placeholder="Enter email" required>
+          <input class="w3-input w3-border" id="password" type="text" placeholder="Enter Password" required>
           <p><label>Re-enter Password</label></p>
-          <input class="w3-input w3-border" id="reenter-password" type="text" onchange="validateEmail(this)" placeholder="Enter email" required>
+          <input class="w3-input w3-border" id="reenter-password" type="text" placeholder="Re-enter Password" required>
         </div>
         <div class="w3-container" id="personal-info"> 
           <h4 class="w3-wide">Personal Information</h4>
@@ -182,9 +182,9 @@ body {font-family: "Lato", sans-serif}
         <input type="checkbox" id="marketing"> </p>
         </div>
        
-        <button class="w3-button w3-block w3-light-grey w3-padding-16 w3-section w3-right" onclick="">REGISTER <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-block w3-light-grey w3-padding-16 w3-section w3-right" form="registrationForm" onclick="validInfo()"> Register</button>
         <button class="w3-button w3-red w3-section" onclick="document.getElementById('registrationModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
-        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+        <p class="w3-right">Need <a href="#" class="w3-tesxt-blue">help?</a></p>
       </form>
     </div>
   </div>
@@ -237,30 +237,40 @@ body {font-family: "Lato", sans-serif}
 
 <script>
 //Validate Email Address
-function validateEmail(email) {
+function validateEmail_test(email) {
   var regex = /^[a-zA-Z0-9_-]]+@[a-zA-Z0-9_-]]+(\.[a-zA-Z]{2,4})+$/;
   var test = regex.test(email);
   switch(test) {
     case true: 
       document.getElementById("email").innerHTML = "Email Success"
-      break
+      break;
     case false:
     document.getElementById("email").innerHTML = "Email Failed"
-    break
+    break;
   }
   } 
 
   //Validate Password
 function validatePassword(pswd) {
-  var regex = /^[a-zA-Z0-9_-]]+@[a-zA-Z0-9_-]]+(\.[a-zA-Z]{2,4})+$/;
+  var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   var test = regex.test(pswd);
   switch(test) {
     case true: 
       document.getElementById("password").innerHTML = "Email Success"
+      break;
     case false:
     document.getElementById("password").innerHTML = "Email Failed"
+    break;
 
   } 
+}
+
+function validateAll() {
+  window.alert("There's still some errors in your input. Make sure you have checked all the information")
+}
+
+function validInfo() {
+  return 
 }
 </script>
 
