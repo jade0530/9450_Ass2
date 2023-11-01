@@ -363,8 +363,9 @@ function validateForm(input) {
     isValidDob === false
   ) {
     window.alert("Please address the errors and fill out all sections of the form before submitting.");
+    return false;
   } else {
-    window.location.href = "regSuccess.html"; // Take user to registration success page
+    return true;
   }
 }
 
