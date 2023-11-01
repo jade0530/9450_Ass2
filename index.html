@@ -362,9 +362,10 @@ function validateForm(input) {
     isValidLastName === false ||
     isValidDob === false
   ) {
-    errorElement.textContent = "Please address the errors and fill out all sections of the form before submitting";
-    errorElement.className = "error-message red";
-  } 
+    window.alert("Please address the errors and fill out all sections of the form before submitting.");
+  } else {
+    window.location.href = "regSuccess.html"; // Take user to registration success page
+  }
 }
 
 </script>
