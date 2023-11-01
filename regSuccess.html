@@ -36,14 +36,23 @@ body {font-family: "Lato", sans-serif}
   </div>
 </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
+<div class="w3-content w3-center" style="max-width:2000px;margin-top:46px">
+  <h4>Registration Successful!</h4>
+ <div id="firstname-output"></div>
+ <div id="lastname-output"></div>
+ <div id="email-output"></div>
+ <div id="dob-output"></div>
+ <div id="gender-output"></div>
+  <h4><a href="index.html">Back</a></h4>
+</div>
 
-       const firstname = params.get('firstname');
-       const lastname = params.get('lastname');
-       const email = params.get('email');
-       const dob = params.get('birthday');
-       const gender = params.get('gender');
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const firstname = params.get('firstname');
+    const lastname = params.get('lastname');
+    const email = params.get('email');
+    const dob = params.get('dob'); 
+    const gender = params.get('Gender'); 
 
        if (firstname) {
            document.getElementById('firstname-output').textContent = `Firstname: ${firstname}`;
@@ -58,22 +67,14 @@ body {font-family: "Lato", sans-serif}
        }
 
        if (dob) {
-           document.getElementById('birthday-output').textContent = `Email: ${dob}`;
+           document.getElementById('dob-output').textContent = `DOB: ${dob}`;
        }
        if (gender) {
            document.getElementById('gender-output').textContent = `Gender: ${gender}`;
        }
  </script>
- 
-<div class="w3-content w3-center" style="max-width:2000px;margin-top:46px">
-    <h4>Registration Successful!</h4>
-   <div id="firstname-output"></div>
-   <div id="lastname-output"></div>
-   <div id="email-output"></div>
-   <div id="birthday-output"></div>
-   <div id="gender-output"></div>
-    <h4><a href="index.html">Back</a></h4>
-</div>
+
+
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">

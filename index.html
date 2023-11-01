@@ -285,14 +285,14 @@ function isDateValid(dateString) {
   const date = new Date(dateString);
 
   // Check if the date is valid (not NaN) and is not a future date
-  if (isNaN(date) || date > new Date()) {
+  if (isNaN(date.getTime()) || date > new Date()) {
     return false;
   }
 
   // Calculate a date that is 200 years ago from the current date
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() - 200);
-
+  
   // Check if the date is not more than 200 years in the past
   if (date < maxDate) {
     return false;
@@ -333,8 +333,7 @@ function validateDateOfBirth(input) {
 }
 
 // Function to validate register form
-function validateForm(input) {
-  var isValid = true;
+function validateForm() {
 
   // Check if email is valid
   var emailInput = document.getElementById("email");
@@ -362,9 +361,11 @@ function validateForm(input) {
     isValidLastName === false ||
     isValidDob === false
   ) {
+    console.log("Something wrong")
     window.alert("Please address the errors and fill out all sections of the form before submitting.");
     return false;
   } else {
+    console.log("Nothing wrong")
     return true;
   }
 }
@@ -380,34 +381,34 @@ function validateForm(input) {
         <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Registration</h2>
       </header>
 
-      <form id="registrationForm" onsubmit="validateAll()" method="GET" action="regSuccess.html">
+      <form id="registrationForm" onsubmit="return validateForm()" method="GET" action="regSuccess.html">
         <div class="w3-container" id="login-info">
           <h4 class="w3-wide">Login Information</h4>
           <p><label>Email Address</label></p>
-          <input class="w3-input w3-border" id="email" type="text" placeholder="Enter Email" required
+          <input class="w3-input w3-border" id="email" name="email" type="text" placeholder="Enter Email" required
             onchange="validateEmailAddress(this)">
           <span class="error-message"></span>
           <p><label>Password</label></p>
-          <input class="w3-input w3-border" id="password" type="password" placeholder="Enter password" required
+          <input class="w3-input w3-border" id="password" name="password" type="password" placeholder="Enter password" required
             onchange="validatePassword(this)">
           <span class="error-message"></span>
           <p><label>Re-enter Password</label></p>
-          <input class="w3-input w3-border" id="reenter-password" type="password" placeholder="Re-enter password" required
+          <input class="w3-input w3-border" id="reenter-password" name="reenter-password" type="password" placeholder="Re-enter password" required
             onchange="validateReenter(this)">
           <span class="error-message"></span>
         </div>
         <div class="w3-container" id="personal-info" > 
           <h4 class="w3-wide">Personal Information</h4>
           <p><label>First Name</label></p>
-          <input class="w3-input w3-border" id="firstname" type="text" placeholder="First Name" required
+          <input class="w3-input w3-border" id="firstname" name="firstname" type="text" placeholder="First Name" required
             onchange="validateFirstName(this)">
           <span class="error-message"></span>
           <p><label>Last Name</label></p>
-          <input class="w3-input w3-border" id="lastname" type="text" placeholder="Last Name" required
+          <input class="w3-input w3-border" id="lastname" name="lastname" type="text" placeholder="Last Name" required
             onchange="validateLastName(this)">
           <span class="error-message"></span>
           <p><label>Date of Birth (dd/mm/yyyy)</label></p>
-          <input class="w3-input w3-border" id="dob" type="text" maxlength="10" placeholder="Enter DOB" required
+          <input class="w3-input w3-border" id="dob" name="dob" type="text" maxlength="10" placeholder="Enter DOB" required
             onchange="validateDateOfBirth(this)">
           <span class="error-message"></span>
           <p><label for="gender">Gender</label></p>
@@ -421,7 +422,7 @@ function validateForm(input) {
           <input type="checkbox" id="marketing"> </p>
         </div>
        
-        <button class="w3-button w3-block w3-light-grey w3-padding-16 w3-section w3-right" onclick="validateForm(this)">REGISTER <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-block w3-light-grey w3-padding-16 w3-section w3-right" onclick="validateForm()">REGISTER <i class="fa fa-check"></i></button>
         <button class="w3-button w3-red w3-section" onclick="document.getElementById('registrationModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
         <p class="w3-right">Need <a href="#" class="w3-tesxt-blue">help?</a></p>
       </form>
@@ -474,44 +475,6 @@ function validateForm(input) {
   </div>
 </footer>
 
-<script>
-//Validate Email Address
-function validateEmail_test(email) {
-  var regex = /^[a-zA-Z0-9_-]]+@[a-zA-Z0-9_-]]+(\.[a-zA-Z]{2,4})+$/;
-  var test = regex.test(email);
-  switch(test) {
-    case true: 
-      document.getElementById("email").innerHTML = "Email Success"
-      break;
-    case false:
-    document.getElementById("email").innerHTML = "Email Failed"
-    break;
-  }
-  } 
-
-  //Validate Password
-function validatePassword(pswd) {
-  var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-  var test = regex.test(pswd);
-  switch(test) {
-    case true: 
-      document.getElementById("password").innerHTML = "Email Success"
-      break;
-    case false:
-    document.getElementById("password").innerHTML = "Email Failed"
-    break;
-
-  } 
-}
-
-function validateAll() {
-  window.alert("There's still some errors in your input. Make sure you have checked all the information")
-}
-
-function validInfo() {
-  return 
-}
-</script>
 
 </body>
 </html>
