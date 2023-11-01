@@ -9,8 +9,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {font-family: "Lato", sans-serif}
-.mySlides {display: none}
+  body {font-family: "Lato", sans-serif}
+  .mySlides {display: none}
+
+  /* .input-container {
+    display: flex;
+    align-items: center;
+  } */
+
+  /* Style for the error message */
+  .error-message {
+    display: none; /* Initially hide the error message */
+    white-space: nowrap; /* Prevent line breaks */
+  }
+
+  /* Style for error messages */
+  .red{
+    color: red;
+  }
+
+  /* Style for non-error messages */
+  .green{
+    color: green;
+  }
+
 </style>
 </head>
 <body>
@@ -144,6 +166,211 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
 
+  <!-- Javascript for Form Validation (Assignment 3)-->
+<script>
+
+// Funtion to validate email address
+function validateEmailAddress(input) {
+  var emailRegex = /^[\w.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  var errorElement = input.nextElementSibling; // Get the error message element
+  errorElement.style.display = "inline";
+  if (input.value == "") {
+    errorElement.textContent = ""
+    return false;
+  } else if (!emailRegex.test(input.value)) {
+    errorElement.textContent = "Email Address is invalid";
+    errorElement.className = "error-message red";
+    return false;
+  } else {
+    errorElement.textContent = "No errors";
+    errorElement.className = "error-message green"; 
+    return true;
+  }
+}
+
+// Function to validate password
+function validatePassword(input) {
+  var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  var errorElement = input.nextElementSibling; // Get the error message element
+  errorElement.style.display = "inline";
+  if (input.value == "") {
+    errorElement.textContent = ""
+    return false;
+  } else if (!passwordRegex.test(input.value)) {
+    errorElement.textContent = "Password must contain 8 characters and include uppercase, lowercase and numbers";
+    errorElement.className = "error-message red";
+    return false;
+  } else {
+    errorElement.textContent = "No errors";
+    errorElement.className = "error-message green"; 
+    return true;
+  }
+}
+
+// Function to validate re-entered password
+function validateReenter(input) {
+  var inputElement = document.getElementById("password");
+  var errorElement = input.nextElementSibling; // Get the error message element
+  errorElement.style.display = "inline";
+  if (input.value == "") {
+    errorElement.textContent = ""
+    return false;
+  } else if (input.value != inputElement.value) {
+    errorElement.textContent = "Passwords must match";
+    errorElement.className = "error-message red";
+    return false;
+  } else {
+    errorElement.textContent = "No errors";
+    errorElement.className = "error-message green"; 
+    return true;
+  }
+}
+
+// Function to validate first name
+function validateFirstName(input) {
+  var firstNameRegex = /^[A-Za-z\s'-]+$/;
+  var errorElement = input.nextElementSibling; // Get the error message element
+  errorElement.style.display = "inline";
+  if (input.value == "") {
+    errorElement.textContent = ""
+    return false;
+  } else if (!firstNameRegex.test(input.value)) {
+    errorElement.textContent = "First name should contain only letters, apostrophes, spaces and hyphens";
+    errorElement.className = "error-message red";
+    return false;
+  } else {
+    errorElement.textContent = "No errors";
+    errorElement.className = "error-message green"; 
+    return true;
+  }
+}
+
+// Function to validate last name 
+function validateLastName(input) {
+  var lastNameRegex = /^[A-Za-z\s'-]+$/;
+  var errorElement = input.nextElementSibling; // Get the error message element
+  errorElement.style.display = "inline";
+  if (input.value == "") {
+    errorElement.textContent = ""
+    return false;
+  } else if (!lastNameRegex.test(input.value)) {
+    errorElement.textContent = "Last name should contain only letters, apostrophes, spaces and hyphens";
+    errorElement.className = "error-message red";
+    return false;
+  } else {
+    errorElement.textContent = "No errors";
+    errorElement.className = "error-message green"; 
+    return true;
+  }
+}
+
+// Function to convert date from dd/mm/yyyy format to yyy-mm-dd format
+function convertDateFormat(inputDate) {
+  // Split the input date into day, month, and year parts
+  const parts = inputDate.split('/');
+  
+  const year = parts[2];
+  const month = parts[1];
+  const day = parts[0];
+  
+  // Ensure zero-padding for single-digit day and month values
+  const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  
+  return formattedDate;
+}
+
+// Function to check if date exists, is not a future date, and is not more than 200 years back
+function isDateValid(dateString) {
+  // Parse the date string into a Date object
+  const date = new Date(dateString);
+
+  // Check if the date is valid (not NaN) and is not a future date
+  if (isNaN(date) || date > new Date()) {
+    return false;
+  }
+
+  // Calculate a date that is 200 years ago from the current date
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 200);
+
+  // Check if the date is not more than 200 years in the past
+  if (date < maxDate) {
+    return false;
+  }
+
+  return true;
+}
+
+// Function to validate date of birth 
+function validateDateOfBirth(input) {
+  var dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+  input.nextElementSibling.style.display = "inline";
+  var errorElement = input.nextElementSibling; // Get the error message element
+  
+  // If no input
+  if (input.value == "") {
+    errorElement.textContent = ""
+    return false;
+  } else if (!dateRegex.test(input.value)) { // Input exists but not in correct format
+    errorElement.textContent = "Invalid DOB";
+    errorElement.className = "error-message red";
+    return false;
+  } 
+
+  // if in correct format, check if date is valid
+  var date = convertDateFormat(input.value)
+  var isValid = isDateValid(date)
+
+  if (isValid === false) {
+    errorElement.textContent = "Invalid DOB";
+    errorElement.className = "error-message red";
+    return false;
+  } else {
+    errorElement.textContent = "No errors";
+    errorElement.className = "error-message green"; 
+    return true;
+  }
+}
+
+// Function to validate register form
+function validateForm(input) {
+  var isValid = true;
+
+  // Check if email is valid
+  var emailInput = document.getElementById("email");
+  var isValidEmail = validateEmailAddress(emailInput); 
+  // Check if password is valid 
+  var passwordInput = document.getElementById("password");
+  var isValidPassword = validatePassword(passwordInput);
+  // Check if re-entered password is valid
+  var reenterInput = document.getElementById("reenter-password");
+  var isValidReenter = validateReenter(reenterInput);
+  // Check if first name is valid
+  var firstNameInput = document.getElementById("firstname");
+  var isValidFirstName = validateFirstName(firstNameInput);
+  // Check if last name is valid
+  var lastNameInput = document.getElementById("lastname");
+  var isValidLastName = validateLastName(lastNameInput);
+  // Check if dob is valid 
+  var dobInput = document.getElementById("dob");
+  var isValidDob = validateDateOfBirth(dobInput);
+
+  if (isValidEmail === false ||
+    isValidPassword === false ||
+    isValidReenter === false ||
+    isValidFirstName === false ||
+    isValidLastName === false ||
+    isValidDob === false
+  ) {
+    window.alert("Please address the errors and fill out all sections of the form before submitting.");
+    return false;
+  } else {
+    return true;
+  }
+}
+
+</script>
+
   <!-- Registration Modal -->
   <div id="registrationModal" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4">
@@ -157,32 +384,44 @@ body {font-family: "Lato", sans-serif}
         <div class="w3-container" id="login-info">
           <h4 class="w3-wide">Login Information</h4>
           <p><label>Email Address</label></p>
-          <input class="w3-input w3-border" id="email" type="text" placeholder="Enter Email" required>
+          <input class="w3-input w3-border" id="email" type="text" placeholder="Enter Email" required
+            onchange="validateEmailAddress(this)">
+          <span class="error-message"></span>
           <p><label>Password</label></p>
-          <input class="w3-input w3-border" id="password" type="text" placeholder="Enter Password" required>
+          <input class="w3-input w3-border" id="password" type="password" placeholder="Enter password" required
+            onchange="validatePassword(this)">
+          <span class="error-message"></span>
           <p><label>Re-enter Password</label></p>
-          <input class="w3-input w3-border" id="reenter-password" type="text" placeholder="Re-enter Password" required>
+          <input class="w3-input w3-border" id="reenter-password" type="password" placeholder="Re-enter password" required
+            onchange="validateReenter(this)">
+          <span class="error-message"></span>
         </div>
-        <div class="w3-container" id="personal-info"> 
+        <div class="w3-container" id="personal-info" > 
           <h4 class="w3-wide">Personal Information</h4>
-        <p><label> First Name</label></p>
-        <input class="w3-input w3-border" id="firstname" type="text" placeholder="First Name" required>
-        <p><label> Last Name</label></p>
-        <input class="w3-input w3-border" id="lastname" type="text" placeholder="Last Name" required>
-        <p><label> Date of Birth</label></p>
-        <input class="w3-input w3-border" id="birthday" type="text" placeholder="Date of Birth" required>
-          <p><label for="gender"> Gender</label></p>
-        <select name="Gender" id="gender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-          <option value="not">Prefer Not to Say</option>
-        </select>
-        <p><label for="marketing"> Would you like to receive marketing material for this conference?</label>
-        <input type="checkbox" id="marketing"> </p>
+          <p><label>First Name</label></p>
+          <input class="w3-input w3-border" id="firstname" type="text" placeholder="First Name" required
+            onchange="validateFirstName(this)">
+          <span class="error-message"></span>
+          <p><label>Last Name</label></p>
+          <input class="w3-input w3-border" id="lastname" type="text" placeholder="Last Name" required
+            onchange="validateLastName(this)">
+          <span class="error-message"></span>
+          <p><label>Date of Birth (dd/mm/yyyy)</label></p>
+          <input class="w3-input w3-border" id="dob" type="text" maxlength="10" placeholder="Enter DOB" required
+            onchange="validateDateOfBirth(this)">
+          <span class="error-message"></span>
+          <p><label for="gender">Gender</label></p>
+            <select name="Gender" id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+              <option value="not">Prefer Not to Say</option>
+            </select>
+          <p><label for="marketing"> Would you like to receive marketing material for this conference?</label>
+          <input type="checkbox" id="marketing"> </p>
         </div>
        
-        <button class="w3-button w3-block w3-light-grey w3-padding-16 w3-section w3-right" form="registrationForm" onclick="validInfo()"> Register</button>
+        <button class="w3-button w3-block w3-light-grey w3-padding-16 w3-section w3-right" onclick="validateForm(this)">REGISTER <i class="fa fa-check"></i></button>
         <button class="w3-button w3-red w3-section" onclick="document.getElementById('registrationModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
         <p class="w3-right">Need <a href="#" class="w3-tesxt-blue">help?</a></p>
       </form>
